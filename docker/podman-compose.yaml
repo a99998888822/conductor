@@ -3,7 +3,7 @@ version: '2.3'
 services:
   conductor-server:
     environment:
-      - CONFIG_PROP=config-redis.properties
+      - CONFIG_PROP=podman-config-redis.properties
       - JAVA_OPTS=-Dpolyglot.engine.WarnInterpreterOnly=false
     image: conductor:server
     container_name: conductor-server
@@ -22,9 +22,11 @@ services:
       interval: 60s
       timeout: 30s
       retries: 12
-    links:
-      - conductor-elasticsearch:es
-      - conductor-redis:rs
+#    links:
+#      - conductor-elasticsearch:es
+#      - conductor-redis:rs
+    # 移出links配置，podman中不支持
+    # 服务可以通过服务名称在网络中相互访问
     depends_on:
       conductor-elasticsearch:
         condition: service_healthy
