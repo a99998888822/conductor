@@ -1,0 +1,12 @@
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // 必须依赖
+    implementation project(':conductor-common')
+    implementation project(':conductor-core')
+    compileOnly 'org.springframework.boot:spring-boot-starter'
+
+    // nacos依赖
+    implementation "com.alibaba.nacos:nacos-client:${revNacosClient}"
+}
